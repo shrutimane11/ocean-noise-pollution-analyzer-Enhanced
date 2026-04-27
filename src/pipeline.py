@@ -1,11 +1,14 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
-import os
+from sklearn.metrics import confusion_matrix
 import matplotlib.pyplot as plt
 import seaborn as sns
-from sklearn.metrics import confusion_matrix
+import os
+import joblib
 
 # ---------------------------
 # SET BASE PATH
@@ -14,6 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 DATA_PATH = os.path.join(BASE_DIR, "data", "sonar_acoustic_dataset.csv")
 OUTPUT_PATH = os.path.join(BASE_DIR, "outputs", "leaderboard.csv")
+MODEL_PATH = os.path.join(BASE_DIR, "outputs", "model.pkl")
 
 # ---------------------------
 # LOAD DATASET
@@ -21,12 +25,10 @@ OUTPUT_PATH = os.path.join(BASE_DIR, "outputs", "leaderboard.csv")
 def load_data():
     if not os.path.exists(DATA_PATH):
         raise FileNotFoundError(f"Dataset not found at {DATA_PATH}")
-
-    df = pd.read_csv(DATA_PATH)
-    return df
+    return pd.read_csv(DATA_PATH)
 
 # ---------------------------
-# PREPROCESS DATA
+# PREPROCESS
 # ---------------------------
 def preprocess(df):
     X = df.iloc[:, :-1]
@@ -34,15 +36,7 @@ def preprocess(df):
     return X, y
 
 # ---------------------------
-# TRAIN MODEL
-# ---------------------------
-def train_model(X_train, y_train):
-    model = RandomForestClassifier(n_estimators=100, random_state=42)
-    model.fit(X_train, y_train)
-    return model
-
-# ---------------------------
-# EVALUATE MODEL
+# EVALUATE
 # ---------------------------
 def evaluate(model, X_test, y_test):
     predictions = model.predict(X_test)
@@ -58,17 +52,14 @@ def evaluate(model, X_test, y_test):
     print(f"Recall   : {rec}")
     print(f"F1 Score : {f1}")
 
-    # ✅ CONFUSION MATRIX (THIS WAS MISSING)
+    # Confusion Matrix
     cm = confusion_matrix(y_test, predictions)
-
     plt.figure()
     sns.heatmap(cm, annot=True, fmt="d")
     plt.title("Confusion Matrix")
     plt.xlabel("Predicted")
     plt.ylabel("Actual")
-
-    # Save to outputs folder
-    plt.savefig(os.path.join(BASE_DIR, "outputs", "confusion_matrix.png"))
+    plt.savefig(os.path.join(BASE_DIR, "outputs", f"{type(model).__name__}_cm.png"))
     plt.close()
 
     return acc, prec, rec, f1
@@ -76,9 +67,9 @@ def evaluate(model, X_test, y_test):
 # ---------------------------
 # UPDATE LEADERBOARD
 # ---------------------------
-def update_leaderboard(acc, prec, rec, f1):
+def update_leaderboard(model_name, acc, prec, rec, f1):
     new_entry = {
-        "Model": "RandomForest",
+        "Model": model_name,
         "Accuracy": acc,
         "Precision": prec,
         "Recall": rec,
@@ -96,7 +87,7 @@ def update_leaderboard(acc, prec, rec, f1):
     df.to_csv(OUTPUT_PATH, index=False)
 
 # ---------------------------
-# FULL PIPELINE
+# PIPELINE
 # ---------------------------
 def run_pipeline():
     df = load_data()
@@ -106,11 +97,27 @@ def run_pipeline():
         X, y, test_size=0.2, random_state=42
     )
 
-    model = train_model(X_train, y_train)
+    # Random Forest
+    rf_model = RandomForestClassifier(n_estimators=100, random_state=42)
+    rf_model.fit(X_train, y_train)
+    joblib.dump(rf_model, MODEL_PATH)
 
-    acc, prec, rec, f1 = evaluate(model, X_test, y_test)
+    acc, prec, rec, f1 = evaluate(rf_model, X_test, y_test)
+    update_leaderboard("RandomForest", acc, prec, rec, f1)
 
-    update_leaderboard(acc, prec, rec, f1)
+    # Logistic Regression
+    lr_model = LogisticRegression(max_iter=1000)
+    lr_model.fit(X_train, y_train)
+
+    acc, prec, rec, f1 = evaluate(lr_model, X_test, y_test)
+    update_leaderboard("LogisticRegression", acc, prec, rec, f1)
+
+    # Decision Tree
+    dt_model = DecisionTreeClassifier(random_state=42)
+    dt_model.fit(X_train, y_train)
+
+    acc, prec, rec, f1 = evaluate(dt_model, X_test, y_test)
+    update_leaderboard("DecisionTree", acc, prec, rec, f1)
 
 # ---------------------------
 # MAIN
