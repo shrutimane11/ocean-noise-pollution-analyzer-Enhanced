@@ -103,6 +103,10 @@ Best performing model is automatically ranked at the top.
 ### Model Performance
 - Accuracy: 85% – 92% (based on tuning)
 
+## 🏆 Best Model
+
+Random Forest achieved the highest accuracy among all models.
+
 ### Visual Outputs
 - Confusion Matrix  
 - Accuracy/Loss Graphs  
