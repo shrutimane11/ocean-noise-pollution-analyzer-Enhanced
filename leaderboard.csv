@@ -1,3 +1,7 @@
 Model,Accuracy,Precision,Recall,F1 Score
 CNN_Model,0.91,0.89,0.88,0.9
+CNN_Model,0.91,0.89,0.88,0.9
+CNN_Model,0.91,0.89,0.88,0.9
+LSTM_Model,0.88,0.86,0.85,0.87
+LSTM_Model,0.88,0.86,0.85,0.87
 LSTM_Model,0.88,0.86,0.85,0.87

@@ -1,8 +1,11 @@
 # 🌊 Ocean Noise Pollution Analyzer (Enhanced)
 
-A Machine Learning-based system for analyzing and classifying marine (ocean) noise pollution using audio signal processing, feature extraction, and model evaluation techniques.
+A Machine Learning system to analyze and classify ocean acoustic signals and detect noise pollution patterns using supervised learning models.
 
 ---
+## 📌 Problem Statement
+
+Ocean environments are affected by increasing noise pollution from ships, submarines, and industrial activities. This project aims to classify underwater acoustic signals and detect different noise patterns using machine learning techniques.
 
 ## 🚀 Features
 - Audio data preprocessing and cleaning  
@@ -15,12 +18,13 @@ A Machine Learning-based system for analyzing and classifying marine (ocean) noi
 ---
 
 ## 📂 Project Structure
-data/ → Dataset files
-src/ → Source code
-outputs/ → Generated plots and results
-leaderboard.csv → Model performance results
-README.md → Project documentation
 
+data/ → Dataset  
+src/ → Source code (model + leaderboard)  
+outputs/ → Graphs & results  
+leaderboard.csv → Model performance tracking  
+test_model.py → Model evaluation  
+train_model.py → Model training  
 ---
 
 ---
@@ -29,17 +33,18 @@ README.md → Project documentation
 - Hydrophone audio recordings (marine sound dataset)  
 - Public ocean acoustic datasets (NOAA / Kaggle / custom collected samples)  
 
----
-
+--- 
 ## ⚙️ Workflow
 
-Hydrophone Audio  
-→ Preprocessing (Noise filtering, normalization)  
-→ Feature Extraction (MFCC / Spectrogram)  
-→ Machine Learning Model (CNN / LSTM)  
-→ Classification (Ship / Marine life / Background noise)  
-→ Visualization (Graphs & Audio analysis)  
-
+Hydrophone Audio Data  
+→ Data Preprocessing  
+→ Train-Test Split  
+→ Feature Extraction  
+→ Model Training (Logistic Regression, Random Forest, Decision Tree)  
+→ Prediction  
+→ Evaluation (Accuracy, Precision, Recall, F1 Score)  
+→ Baseline Comparison  
+→ Visualization (Baseline vs Model)
 ---
 
 ## 🧠 Model Explanation
@@ -48,14 +53,27 @@ Hydrophone Audio
 - CNN model trained for underwater sound classification  
 
 ---
+## 🤖 Models Used
+
+- Logistic Regression  
+- Random Forest Classifier  
+- Decision Tree Classifier  
+
+Each model is evaluated using:
+- Accuracy  
+- Precision  
+- Recall  
+- F1 Score
 
 ## 🏆 Leaderboard System
-The `leaderboard.csv` file tracks model performance using:
 
+A dynamic leaderboard tracks model performance based on:
 - Accuracy  
 - Precision  
 - Recall  
 - F1 Score  
+
+Best performing model is automatically ranked at the top.
 
 ### ⚠️ Contribution Rules
 - Do NOT delete existing entries  
@@ -64,7 +82,23 @@ The `leaderboard.csv` file tracks model performance using:
 
 ---
 
-## 📈 Results
+## 📊 Results
+
+### Model Performance:
+
+| Model | Accuracy |
+|------|----------|
+| Logistic Regression | 0.76 |
+| Random Forest | 0.77 |
+| Decision Tree | 0.76 |
+
+### Baseline Comparison:
+- Baseline Accuracy: ~0.62  
+- Best Model Accuracy: ~0.77  
+- Improvement: Significant improvement over baseline
+
+### Visualization:
+- Baseline vs Model accuracy graph included in outputs
 
 ### Model Performance
 - Accuracy: 85% – 92% (based on tuning)
@@ -74,15 +108,14 @@ The `leaderboard.csv` file tracks model performance using:
 - Accuracy/Loss Graphs  
 - Spectrogram Analysis  
 
-## 🌍 Real-World Application
-This system can help:
-
-- Monitor marine traffic noise  
-- Detect harmful underwater industrial activity  
-- Support marine biodiversity conservation  
-- Assist environmental research organizations  
 
 ---
+## 🌍 Real-World Applications
+
+- Monitoring marine traffic noise pollution  
+- Detecting industrial underwater disturbances  
+- Supporting marine ecosystem research  
+- Assisting environmental protection agencies  
 
 ## 📌 Tech Stack
 - Python  
