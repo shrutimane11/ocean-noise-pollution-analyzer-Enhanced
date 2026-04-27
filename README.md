@@ -1,52 +1,71 @@
-# ocean-noise-pollution-analyzer-Enhanced
-Machine Learning project for classification and analysis of marine noise pollution based on audio signal processing and model leaderboard by performance metrics
+# 🌊 Ocean Noise Pollution Analyzer (Enhanced)
+
+A Machine Learning project for classification and analysis of marine (ocean) noise pollution using audio signal processing and model performance evaluation.
+
+---
 
 ## 🚀 Features
-- Data preprocessing and cleaning
-- Noise pattern analysis
-- Data visualization
-- Insight generation
+- Data preprocessing and cleaning  
+- Ocean noise pattern analysis  
+- Data visualization using Matplotlib & Seaborn  
+- Insight generation from acoustic data  
+- Model performance tracking using leaderboard  
+
+---
 
 ## 🛠️ Tech Stack
-- Python
-- Pandas
-- NumPy
-- Matplotlib , Seaborn
+- Python  
+- Pandas  
+- NumPy  
+- Matplotlib  
+- Seaborn  
+- Scikit-learn  
 
-## 📂 Project Structure
-data/ → dataset files  
-src/ → source code  
-leaderboard.csv → model results  
-README.md → documentation  
+---
+
+## 📂 Project Structure 
+data/ → Dataset files
+src/ → Source code
+outputs/ → Generated plots and results
+leaderboard.csv → Model performance results
+README.md → Project documentation
+
+---
 
 
 ---
 
 ## 📊 Dataset
-The dataset used in this project is stored in the `data/` folder and contains ocean noise pollution data for analysis.
+The dataset is stored in the `data/` folder and contains marine acoustic signals used for noise pollution analysis and model training.
 
 ---
 
 ## 🏆 Leaderboard
-The `leaderboard.csv` file tracks model performance using metrics such as Accuracy, Precision, Recall, and F1 Score.
+The `leaderboard.csv` file tracks model performance using the following metrics:
+- Accuracy  
+- Precision  
+- Recall  
+- F1 Score  
 
-### Rules for Contributors:
+### ⚠️ Contribution Rules
 - Do NOT delete existing entries  
 - Only append new rows  
-- Maintain proper format  
+- Maintain consistent formatting  
 
 ---
 
 ## 👩‍💻 My Contribution
 - Data preprocessing and cleaning  
-- Visualization and analysis  
-- Improving project structure and documentation  
+- Exploratory data analysis (EDA)  
+- Visualization and pattern analysis  
+- Project structure improvement  
+- Model evaluation and leaderboard setup  
 
 ---
 
 ## 🤝 Collaboration
-This project was originally developed as a collaborative effort with Neha and Shreyash.  
-This repository contains my enhanced version with improvements.
+This project was originally developed with Neha and Shreyash.  
+This repository represents my improved version with enhancements in structure, analysis, and documentation.
 
 ---
 
@@ -54,15 +73,3 @@ This repository contains my enhanced version with improvements.
 ```bash
 pip install -r requirements.txt
 python main.py
-```
-
-## 📌 Future Improvements
-- Add advanced ML models  
-- Real-time data integration  
-- Web dashboard  
-
-## 📊 Model Evaluation
-
-Confusion Matrix:
-
-![Confusion Matrix](outputs/confusion_matrix.png)
