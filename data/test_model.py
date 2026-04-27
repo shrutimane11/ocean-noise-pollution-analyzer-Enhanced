@@ -37,3 +37,15 @@ print("\n📄 Classification Report:")
 print(classification_report(y_test, y_pred))
 
 print("🎯 Testing completed")
+
+import numpy as np
+from sklearn.metrics import accuracy_score
+
+# Majority class baseline
+majority_class = np.bincount(y_test).argmax()
+baseline_pred = np.full(len(y_test), majority_class)
+
+baseline_accuracy = accuracy_score(y_test, baseline_pred)
+
+print("\n🎯 BASELINE MODEL")
+print("Baseline Accuracy:", baseline_accuracy)
