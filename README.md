@@ -60,3 +60,9 @@ python main.py
 - Add advanced ML models  
 - Real-time data integration  
 - Web dashboard  
+
+## 📊 Model Evaluation
+
+Confusion Matrix:
+
+![Confusion Matrix](outputs/confusion_matrix.png)

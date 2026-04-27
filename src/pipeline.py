@@ -3,6 +3,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 import os
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.metrics import confusion_matrix
 
 # ---------------------------
 # SET BASE PATH
@@ -54,6 +57,19 @@ def evaluate(model, X_test, y_test):
     print(f"Precision: {prec}")
     print(f"Recall   : {rec}")
     print(f"F1 Score : {f1}")
+
+    # ✅ CONFUSION MATRIX (THIS WAS MISSING)
+    cm = confusion_matrix(y_test, predictions)
+
+    plt.figure()
+    sns.heatmap(cm, annot=True, fmt="d")
+    plt.title("Confusion Matrix")
+    plt.xlabel("Predicted")
+    plt.ylabel("Actual")
+
+    # Save to outputs folder
+    plt.savefig(os.path.join(BASE_DIR, "outputs", "confusion_matrix.png"))
+    plt.close()
 
     return acc, prec, rec, f1
 
