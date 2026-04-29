@@ -24,12 +24,12 @@ src/ → Source code (model + leaderboard)
 outputs/ → Graphs & results  
 leaderboard.csv → Model performance tracking  
 test_model.py → Model evaluation  
-train_model.py → Model training  
+train_model.py → Model  training  
 ---
 
 ---
 
-## 📊 Dataset Source
+## 📊   Dataset Source
 - Hydrophone audio recordings (marine sound dataset)  
 - Public ocean acoustic datasets (NOAA / Kaggle / custom collected samples)  
 
